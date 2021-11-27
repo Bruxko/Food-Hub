@@ -2,6 +2,7 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const axios = require ('axios');
+const { Recipe, TypeDiet } = require ('../db');
 const API_KEY = '1df53bda114a486f98faf1e2cc48e7fd'
 
 
@@ -45,5 +46,60 @@ const getAllRecipes = async () => {
     const allRecipes = apiInfo.concat(dbInfo);
     return allRecipes
 }
+
+router.get('/recipes', async (req, res) => {
+    const name = req.query.name
+    const recipesTotal = await getAllRecipes();
+    if (name) {
+        let recipeTitle = await recipesTotal.filter(el => el.title.toLowerCase().includes(name.toLowerCase()));
+        recipeTitle.length ?
+        res.status(200).send(recipeTitle) :
+        res.status(404).send("No se encontro la receta")
+    } else {
+        res.status(200).send(recipesTotal)
+    }
+});
+
+router.get('/types', async (req, res) => {
+    const recipesApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`)
+    const types = await recipesApi.data.results.map(el => el.diets);
+    const diets = types.flat();
+    const typeDiets = [...new Set(diets), "vegetarian"];
+    typeDiets.forEach(el => {
+        TypeDiet.findOrCreate({
+            where: {name: el},
+        })
+    })
+    const allDiets = await TypeDiet.findAll();
+    res.send(allDiets);
+});
+
+router.post('/recipe', async (req, res) => {
+    let {
+        title,
+        summary,
+        spoonacularScore,
+        healthScore,
+        analyzedInstructions,
+        createdInDb,
+        typeDiets
+    } = req.body;
+    if (!title || !summary) {
+        return res.status(404).send('Por favor, ingrese un título y un resumen para continuar');
+    }
+    let createRecipe = await Recipe.create({
+        title,
+        summary,
+        spoonacularScore,
+        healthScore,
+        analyzedInstructions,
+        createdInDb
+    })
+    let dietTypeDb = await TypeDiet.findAll({
+        where: { name: typeDiets}
+    })
+    createRecipe.addTypeDiet(dietTypeDb)
+    res.status(200).send('Receta creada con exito!')
+})
 
 module.exports = router;
