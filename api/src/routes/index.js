@@ -84,9 +84,7 @@ router.post('/recipe', async (req, res) => {
         createdInDb,
         typeDiets
     } = req.body;
-    if (!title || !summary) {
-        return res.status(404).send('Por favor, ingrese un título y un resumen para continuar');
-    }
+
     let createRecipe = await Recipe.create({
         title,
         summary,
@@ -99,7 +97,18 @@ router.post('/recipe', async (req, res) => {
         where: { name: typeDiets}
     })
     createRecipe.addTypeDiet(dietTypeDb)
-    res.status(200).send('Receta creada con exito!')
+    res.send('Receta creada con exito!')
 })
+
+router.get('/recipes/:id', async (req, res) => {
+    const id = req.params.id;
+    const recipesTotal = await getAllRecipes();
+    if (id) {
+        let recipeId = await recipesTotal.filter(el => el.id == id);
+        recipeId.length ?
+        res.status(200).json(recipeId) :
+        res.status(404).send('No se encontró la receta');
+    }
+});
 
 module.exports = router;
