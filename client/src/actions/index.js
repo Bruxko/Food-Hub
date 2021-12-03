@@ -9,3 +9,24 @@ export function getRecipes() {
         })
     }
 }
+
+export function filterRecipesByTypeDiet (payload){
+    return {
+        type : 'FILTER_BY_TYPEDIET',
+        payload
+    }
+}
+
+export function filterRecipesByCreated(payload){
+    return{
+        type: 'FILTER_BY_CREATED_RECIPE',
+        payload
+    }
+}
+
+export function orderByName (payload){
+    return {
+        type : 'ORDER_BY_NAME',
+        payload
+    }
+}
