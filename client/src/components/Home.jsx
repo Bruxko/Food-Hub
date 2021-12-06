@@ -5,6 +5,7 @@ import { getRecipes, filterRecipesByTypeDiet, filterRecipesByCreated, orderByNam
 import { Link } from 'react-router-dom';
 import Card from "./Card";
 import Paginate from "./Paginate";
+import SearchBar from "./SearchBar";
 
 export default function Home () {
     const dispatch = useDispatch();
@@ -48,6 +49,7 @@ export default function Home () {
         <div>
             <Link to = '/recipe'>Crea tu Receta</Link>
             <h1>FOOD PORN</h1>
+            <SearchBar/>
             <button onClick={e => {handleClick(e)}}>
                 Volver a cargar todas las recetas
             </button>
@@ -86,7 +88,7 @@ export default function Home () {
                     {currentRecipes?.map((el) => {
                         return (
                                 <div>
-                                <Link to={"/home"}>
+                                <Link to={"/recipes/" + el.id}>
                                     <Card title={el.title} img={el.img} typeDiets={el.typeDiets}/>
                                 </Link>
                                 </div>                            

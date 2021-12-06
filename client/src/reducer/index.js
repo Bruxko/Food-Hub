@@ -2,7 +2,9 @@
 
 const initialState = {
     recipes: [],
-    allRecipes: []
+    detail: [],
+    allRecipes: [],
+    typediets: []
 }
 
 function rootReducer (state = initialState, action){
@@ -13,6 +15,24 @@ function rootReducer (state = initialState, action){
                 recipes: action.payload,
                 allRecipes: action.payload
             }
+
+            case 'GET_NAME_RECIPES':
+                return{
+                    ...state,
+                    recipes: action.payload,
+                }
+
+                case 'GET_TYPE_DIETS':
+                    return {
+                        ...state,
+                        typediets : action.payload
+                    }      
+
+                case 'POST_RECIPE':
+                    return{
+                        ...state,
+                    }
+
             case 'FILTER_BY_TYPEDIET':
                 const allRec = state.allRecipes
                 const typeDietFilter = action.payload === 'All' ? allRec : allRec.filter(t => t.typeDiets.find(e => e.name === action.payload))  
@@ -56,6 +76,12 @@ function rootReducer (state = initialState, action){
                         recipes : order
         
                 }
+
+                case 'GET_DETAIL':
+                    return {
+                      ...state,
+                      detail: action.payload,
+                    };
 
             default:
                 return state;
