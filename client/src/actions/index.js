@@ -60,6 +60,13 @@ export function filterRecipesByCreated(payload){
     }
 }
 
+export function orderByPuntuation (payload){
+    return {
+        type : 'ORDER_BY_PUNTUATION',
+        payload
+    }
+}
+
 export function orderByName (payload){
     return {
         type : 'ORDER_BY_NAME',

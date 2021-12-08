@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, filterRecipesByTypeDiet, filterRecipesByCreated, orderByName } from "../actions";
+import { getRecipes, filterRecipesByTypeDiet, filterRecipesByCreated, orderByName, orderByPuntuation } from "../actions";
 import { Link } from 'react-router-dom';
 import Card from "./Card";
 import Paginate from "./Paginate";
 import SearchBar from "./SearchBar";
+import styles from './Home.module.css';
 
 export default function Home () {
     const dispatch = useDispatch();
@@ -34,6 +35,13 @@ export default function Home () {
         dispatch(filterRecipesByTypeDiet(e.target.value))
     }
 
+    function handlePuntuation(e) {
+        e.preventDefault();
+        dispatch(orderByPuntuation(e.target.value));
+        setCurrentPage(1);
+        setOrden(`ordenado ${e.target.value}`);
+      }
+
     function handleFilterCreated(e){
         dispatch(filterRecipesByCreated (e.target.value))
     }
@@ -46,29 +54,29 @@ export default function Home () {
     }
 
     return (
-        <div>
-            <Link to = '/recipe'>Crea tu Receta</Link>
-            <h1>FOOD PORN</h1>
+        <div className={styles.bkg}>
+            <Link to = '/recipe'><button className={styles.create}> Crea tu Receta </button></Link>
+            <h1>FOOD HUB</h1>
             <SearchBar/>
-            <button onClick={e => {handleClick(e)}}>
+            <button onClick={e => {handleClick(e)}} className={styles.refresh}>
                 Volver a cargar todas las recetas
             </button>
-            <div>
-                <select onChange={e => handleSort(e)}>
+            <div className={styles.filt}>
+                <select onChange={e => handleSort(e)} className={styles.select}>
                     <option value='Asc'>A-Z</option>
                     <option value='Desc'>Z-A</option>
                 </select>
-                <select>
+                <select onChange={e => handlePuntuation(e)}  className={styles.select}>
                     <option value="All">All</option>
                     <option value="Asc">Highest Score</option>
                     <option value="Desc">Lowest Score</option>
                 </select>
-                <select onChange={e => handleFilterCreated(e)}>
+                <select onChange={e => handleFilterCreated(e)} className={styles.select}>
                     <option value="All">All Recipes</option>
                     <option value="created">Recipe Created</option>
                     <option value="api">Api Recipes</option>
                 </select>
-                <select onChange={e => handleFilterTypeDiet(e)}>
+                <select onChange={e => handleFilterTypeDiet(e)} className={styles.select}>
                     <option value="default">All Diets</option>
                     <option value="gluten free">Gluten Free</option>
                     <option value="dairy free">Dairy Free</option>
@@ -80,21 +88,29 @@ export default function Home () {
                     <option value="primal">Primal</option>
                     <option value="whole 30">Whole 30</option>
                 </select>
+                
+                <div className={styles.paginado}>
                     <Paginate
                         recipesPerPage={recipesPerPage}
                         allRecipes={allRecipes.length}
                         paginate={paginate}
                     />
+                </div>
+                <div className={styles.cards}>
                     {currentRecipes?.map((el) => {
                         return (
-                                <div>
+                            
                                 <Link to={"/recipes/" + el.id}>
                                     <Card title={el.title} img={el.img} typeDiets={el.typeDiets}/>
                                 </Link>
-                                </div>                            
+                                                           
                         )
                     })}
+                    
+                    </div> 
+                    
             </div>
+            
         </div>
     )
 }

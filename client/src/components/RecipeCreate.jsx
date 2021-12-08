@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { postRecipes, getTypeDiets } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
+import styles from './RecipeCreate.module.css'
 
 
 function controlForm (input){
@@ -75,10 +76,10 @@ export default function CreateRecipe() {
         },[dispatch])
 
     return (
-        <div>
-            <Link to='/home'><button>Volver</button></Link>
-            <h1>Crea tu Receta!</h1>
-            <form onSubmit={(e)=>handleSubmit(e)}>
+        <div className={styles.bkg}>
+            <Link to='/home'><button className={styles.btn}>Volver</button></Link>
+            <h1 className={styles.h1}>Crea tu Receta!</h1>
+            <form onSubmit={(e)=>handleSubmit(e)} className={styles.form}>
                 <div>
                     <label>Nombre:</label>
                     <input
@@ -88,7 +89,7 @@ export default function CreateRecipe() {
                      onChange={(e)=>handleChange(e)}
                     />
                      { errors.title && (
-                        <p>{errors.title}</p>
+                        <p className={styles.error}>{errors.title}</p>
                     ) }
                 </div>
                 <div>
@@ -100,7 +101,7 @@ export default function CreateRecipe() {
                        onChange={(e)=>handleChange(e)}
                     />
                     { errors.summary && (
-                        <p>{errors.summary}</p>
+                        <p className={styles.error}>{errors.summary}</p>
                     ) }
                 </div>
                 <div>
@@ -112,7 +113,7 @@ export default function CreateRecipe() {
                     onChange={(e)=>handleChange(e)}
                     />
                     { errors.spoonacularScore && (
-                        <p>{errors.spoonacularScore}</p>
+                        <p className={styles.error}>{errors.spoonacularScore}</p>
                     ) }
                 </div>
                 <div>
@@ -124,7 +125,7 @@ export default function CreateRecipe() {
                      onChange={(e)=>handleChange(e)}
                     />
                     { errors.healthScore && (
-                        <p>{errors.healthScore}</p>
+                        <p className={styles.error}>{errors.healthScore}</p>
                     ) }
                 </div>
                 <div>
@@ -139,19 +140,19 @@ export default function CreateRecipe() {
                         <p>{errors.analyzedInstructions}</p>
                     ) }
                 </div>
-                <select onChange={(e) => handleSelect(e)}>
+                <select onChange={(e) => handleSelect(e)} className={styles.select}>
                     {listDiets.map((d) => (
                         <option value={d.name}>{d.name}</option>
                     ))}
                 </select>
                 <ul><li>{input.typeDiets.map(e =>e + ", ")}</li></ul>
-                <button type='submit'>Crear Receta</button>
+                <button type='submit' className={styles.correct}>Crear Receta</button>
             </form>
             {input.typeDiets.map(e => {
                 return(
                <div >
-                    <p>{e}</p>
-                    <button className="botonX" onClick={() => handleDelete(e)}>X</button>
+                    <p className={styles.types}>{e}</p>
+                    <button className={styles.btnx} onClick={() => handleDelete(e)}>X</button>
                    
                 </div>
             )})}

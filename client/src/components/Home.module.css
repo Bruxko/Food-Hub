@@ -1,0 +1,89 @@
+.bkg{
+    background-image: url('../icons/Landing.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    
+}
+.select{
+  background: rgb(186, 216, 156);
+  cursor: pointer;
+  display:inline-block;
+  justify-content: center;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  border-style: groove;
+}
+.cards{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 25% 25% 25% 25%;
+    gap: 20px;
+}
+
+.paginado{
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  
+}
+
+
+.refresh{
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  font-family: italic;
+  color: #000000;
+  font-size: 14px;
+  background: rgb(193, 215, 233);
+  padding:  3px 13px 3px 13px ;
+  text-decoration: none;
+  
+}
+
+.create{
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  font-family: italic;
+  color: #000000;
+  font-size: 14px;
+  background: rgb(193, 228, 187);
+  padding:  3px 13px 3px 13px ;
+  text-decoration: none;
+}
+
+
+.btnsearch {
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  font-family: italic;
+  color: #000000;
+  font-size: 14px;
+  background: #e6d57e;
+  padding:  3px 13px 3px 13px ;
+  text-decoration: none;
+}
+
+.btnsearch:hover {
+  background: #d8e66c;
+  text-decoration: none;
+  cursor: pointer;
+}
+.create:hover {
+  background: #d8e66c;
+  text-decoration: none;
+  cursor: pointer;
+}
+.refresh:hover {
+  background: #d8e66c;
+  text-decoration: none;
+  cursor: pointer;
+}
