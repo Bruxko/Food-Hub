@@ -3,7 +3,7 @@ const { Router } = require('express');
 // Ejemplo: const authRouter = require('./auth.js');
 const axios = require ('axios');
 const { Recipe, TypeDiet } = require ('../db');
-const API_KEY = 'ddfed3e8b14442aa8ce5860f3cfde770'
+const {API_KEY} = process.env;
 
 
 const router = Router();
