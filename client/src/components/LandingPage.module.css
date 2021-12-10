@@ -15,19 +15,19 @@
     font-style: italic;
     position:relative;
     font-size: 115px;
-    background-color: rgb(123, 184, 123);
+    background-color: #ffafcc;
 }
 
 .btn {
     cursor: pointer;
-    background: #56c79a;
+    background: #ffafcc;
    
   
     
     border-radius: 15px;
     font-style: italic;
 
-    color: #ffffff;
+    color: lightyellow;
     font-size: 23px;
     padding: 9px 23px 9px 23px;
     text-decoration: none;

@@ -32,7 +32,7 @@
 .form{
     display: flex;
     flex-direction: column;
-    background-color:rgb(212, 212, 158) ;
+    background-color: #f2cc8f ;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 4px 4px 10px 10px rgba(0, 0, 0, 0.55);    
@@ -45,7 +45,7 @@
     font-family: italic;
     color: #000000;
     font-size: 17px;
-    background: #e7f7c3;
+    background: #ffafcc;
     padding: 10px 30px 10px 30px;
     text-decoration: none;
 
@@ -67,7 +67,7 @@
     font-family: italic;
     color: #000000;
     font-size: 17px;
-    background: #f7eac3;
+    background: #f2cc8f;
     padding: 10px 30px 10px 30px;
     text-decoration: none;
   }
@@ -83,7 +83,7 @@
     cursor: pointer;
   }
   .h1{
-    background-color:rgb(218, 146, 146) ;
+    background-color: #ffafcc;
     border-radius: 20px;
     padding: 10px;
     box-shadow: 4px 4px 10px 10px rgba(0, 0, 0, 0.55);    
@@ -115,7 +115,7 @@
     border-radius: 5px;
   }
   .select{
-    background: rgb(186, 216, 156);
+    background: #ffafcc;
     cursor: pointer;
     display:inline-block;
     justify-content: center;

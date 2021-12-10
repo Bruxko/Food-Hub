@@ -10,11 +10,12 @@
     
 }
 .select{
-  background: rgb(186, 216, 156);
+  background: #ffb4a2;
   cursor: pointer;
   display:inline-block;
   justify-content: center;
   text-align: center;
+  font-family: italic;
   padding: 5px;
   border-radius: 5px;
   border-style: groove;
@@ -41,7 +42,7 @@
   font-family: italic;
   color: #000000;
   font-size: 14px;
-  background: rgb(193, 215, 233);
+  background: #ffb4a2;
   padding:  3px 13px 3px 13px ;
   text-decoration: none;
   
@@ -54,11 +55,14 @@
   font-family: italic;
   color: #000000;
   font-size: 14px;
-  background: rgb(193, 228, 187);
+  background: #ffb4a2;
   padding:  3px 13px 3px 13px ;
   text-decoration: none;
 }
 
+.input{
+  background-color: #f2cc8f;
+}
 
 .btnsearch {
   -webkit-border-radius: 10;
@@ -67,23 +71,29 @@
   font-family: italic;
   color: #000000;
   font-size: 14px;
-  background: #e6d57e;
+  background: #ffb4a2;
   padding:  3px 13px 3px 13px ;
   text-decoration: none;
 }
 
 .btnsearch:hover {
-  background: #d8e66c;
+  background: #ffafcc;
   text-decoration: none;
   cursor: pointer;
 }
 .create:hover {
-  background: #d8e66c;
+  background: #ffafcc;
   text-decoration: none;
   cursor: pointer;
 }
 .refresh:hover {
-  background: #d8e66c;
+  background: #ffafcc;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.select:hover {
+  background: #ffafcc;
   text-decoration: none;
   cursor: pointer;
 }
